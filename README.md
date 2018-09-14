@@ -1,1 +1,1 @@
-# validator
+Validation framework library

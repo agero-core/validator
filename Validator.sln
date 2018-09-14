@@ -1,0 +1,30 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agero.Core.Validator", "Agero.Core.Validator\Agero.Core.Validator.csproj", "{B5075D74-6D98-4B62-A0B6-CFD9B6F47624}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agero.Core.Validator.Tests", "Agero.Core.Validator.Tests\Agero.Core.Validator.Tests.csproj", "{3856934C-4D66-4EAB-AB33-FFA90028C067}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B5075D74-6D98-4B62-A0B6-CFD9B6F47624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5075D74-6D98-4B62-A0B6-CFD9B6F47624}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5075D74-6D98-4B62-A0B6-CFD9B6F47624}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5075D74-6D98-4B62-A0B6-CFD9B6F47624}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3856934C-4D66-4EAB-AB33-FFA90028C067}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3856934C-4D66-4EAB-AB33-FFA90028C067}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3856934C-4D66-4EAB-AB33-FFA90028C067}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3856934C-4D66-4EAB-AB33-FFA90028C067}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2B91937F-12FA-42C9-9F6E-F08A8F4A0AB1}
+	EndGlobalSection
+EndGlobal
