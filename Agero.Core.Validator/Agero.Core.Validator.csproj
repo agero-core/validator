@@ -3,19 +3,21 @@
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0</TargetFrameworks>
         <PackageId>Agero.Core.Validator</PackageId>
-        <PackageTags>validator</PackageTags>
+        <PackageTags>validator,ModelValidation</PackageTags>
         <Version>1.0.0</Version>
         <Authors>Core Automation Team</Authors>        
         <Company>Agero Inc.</Company>
         <Copyright>Copyright © Agero 2018</Copyright>
         <Product>Validator</Product>
-        <Description>Validation framework library</Description>
+        <Description>Model validation library for .NET applications.</Description>
         <Title>Validator</Title>
         <PackageProjectUrl>https://github.com/agero-core/validator</PackageProjectUrl>
         <PackageReleaseNotes></PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageIconUrl>https://secure.gravatar.com/avatar/8b6c044292b862f1870550039390f631</PackageIconUrl>
         <PackageLicenseUrl>https://raw.githubusercontent.com/agero-core/validator/master/LICENSE.md</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/agero-core/validator.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <PublishRepositoryUrl>true</PublishRepositoryUrl> 
