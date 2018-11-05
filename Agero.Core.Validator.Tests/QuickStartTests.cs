@@ -1,4 +1,5 @@
-﻿using Agero.Core.Validator.Attributes;
+﻿using System.Linq;
+using Agero.Core.Validator.Attributes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Agero.Core.Validator.Tests
@@ -44,13 +45,15 @@ namespace Agero.Core.Validator.Tests
             var validationErrors = validator.Validate(myClass);
 
             Assert.AreSame(myClass, validationErrors.Object);
-            Assert.AreEqual(2, validationErrors.Errors.Length);
+            Assert.AreEqual(2, validationErrors.Errors.Count);
 
-            Assert.AreEqual("Id", validationErrors.Errors[0].Key);
-            Assert.AreEqual("Id must be greater than 0.", validationErrors.Errors[0].Message);
+            var error1 = validationErrors.Errors.First();
+            Assert.AreEqual("Id", error1.Key);
+            Assert.AreEqual("Id must be greater than 0.", error1.Message);
 
-            Assert.AreEqual("Value", validationErrors.Errors[1].Key);
-            Assert.AreEqual("Value must be specified.", validationErrors.Errors[1].Message);
+            var error2 = validationErrors.Errors.Last();
+            Assert.AreEqual("Value", error2.Key);
+            Assert.AreEqual("Value must be specified.", error2.Message);
         }
     }
 }

@@ -3,15 +3,15 @@
 namespace Agero.Core.Validator.Attributes
 {
     /// <summary>
-    /// Validation attribute which specifies that property of nullable <see cref="int"/> type needs to be validated by <see cref="ValidationHelper"/>.
+    /// Validation attribute which specifies that property of nullable <see cref="short"/> type needs to be validated by <see cref="ValidationHelper"/>.
     /// If value is null, then validation is passed.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class NullableIntValidateAttribute : IntValidateAttribute
+    public class NullableShortValidateAttribute : ShortValidateAttribute
     {
         /// <summary>Constructor</summary>
         /// <param name="message">Validation message which is used in validation error.</param>
-        public NullableIntValidateAttribute(string message)
+        public NullableShortValidateAttribute(string message)
             : base(message)
         {
         }

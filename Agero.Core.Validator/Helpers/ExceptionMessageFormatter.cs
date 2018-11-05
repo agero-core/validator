@@ -1,15 +1,16 @@
-﻿using Agero.Core.Checker;
+﻿using System.Collections.Generic;
+using Agero.Core.Checker;
 using System.Text;
 
 namespace Agero.Core.Validator.Helpers
 {
     internal static class ExceptionMessageFormatter
     {
-        public static string CreateExceptionMessage(object obj, ValidationError[] errors)
+        public static string CreateExceptionMessage(object obj, IReadOnlyCollection<ValidationError> errors)
         {
             Check.ArgumentIsNull(obj, "obj");
             Check.ArgumentIsNull(errors, "errors");
-            Check.Argument(errors.Length > 0, "errors.Length > 0");
+            Check.Argument(errors.Count > 0, "errors.Count > 0");
 
             var stringBuilder = new StringBuilder();
 

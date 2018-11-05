@@ -2,7 +2,8 @@
 
 namespace Agero.Core.Validator.Attributes
 {
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
+    /// <summary>Validation attribute which tells that property type has validation attributes that needs to be evaluated by <see cref="ValidationHelper"/>.</summary>
+    [AttributeUsage(AttributeTargets.Property)]
     public class ComplexTypeValidateAttribute : Attribute
     {
     }

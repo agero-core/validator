@@ -1,9 +1,14 @@
-﻿namespace Agero.Core.Validator
+﻿using System.Collections.Generic;
+
+namespace Agero.Core.Validator
 {
+    /// <summary>Validation errors for particular untyped object.</summary>
     public interface IValidationErrors
     {
-        ValidationError[] Errors { get; }
+        /// <summary>Validation errors.</summary>
+        IReadOnlyCollection<ValidationError> Errors { get; }
 
+        /// <summary>Untyped object.</summary>
         object Object { get; }
     }
 }

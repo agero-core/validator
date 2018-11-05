@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Agero.Core.Validator.Tests
 {
@@ -213,7 +214,7 @@ namespace Agero.Core.Validator.Tests
 
             // Assert
             Assert.AreSame(testClass, errors.Object);
-            Assert.AreEqual(10, errors.Errors.Length);
+            Assert.AreEqual(10, errors.Errors.Count);
 
             CollectionAssert.AreEquivalent(
                 new[]
@@ -230,7 +231,7 @@ namespace Agero.Core.Validator.Tests
                         new ValidationError("protectedmethod", "Protected_Method"),
                         new ValidationError("privatemethod", "Private_Method")
                     },
-                errors.Errors);
+                errors.Errors.ToArray());
         }
 
         [TestMethod]
@@ -286,7 +287,7 @@ namespace Agero.Core.Validator.Tests
             var errors = validator.Validate(testClass);
 
             // Assert
-            Assert.AreEqual("TestProperty", errors.Errors[0].Key);
+            Assert.AreEqual("TestProperty", errors.Errors.Single().Key);
         }
 
         [TestMethod]
@@ -300,8 +301,8 @@ namespace Agero.Core.Validator.Tests
             var errors = validator.Validate(testClass);
 
             // Assert
-            Assert.AreEqual(1, errors.Errors.Length);
-            Assert.AreEqual("similarError", errors.Errors[0].Key);
+            Assert.AreEqual(1, errors.Errors.Count);
+            Assert.AreEqual("similarError", errors.Errors.Single().Key);
         }
 
         [TestMethod]
@@ -335,11 +336,12 @@ namespace Agero.Core.Validator.Tests
 
             // Assert
             Assert.IsNotNull(errors);
-            Assert.AreEqual(1, errors.Errors.Length);
+            Assert.AreEqual(1, errors.Errors.Count);
             Assert.AreEqual(testClass, errors.Object);
 
-            Assert.AreEqual("TestProperty1", errors.Errors[0].Key);
-            Assert.AreEqual("Error1", errors.Errors[0].Message);
+            var error = errors.Errors.Single();
+            Assert.AreEqual("TestProperty1", error.Key);
+            Assert.AreEqual("Error1", error.Message);
         }
 
         [TestMethod]
@@ -385,12 +387,14 @@ namespace Agero.Core.Validator.Tests
             // Assert
             Assert.IsNotNull(errors);
             Assert.AreEqual(testClass, errors.Object);
-            Assert.AreEqual(2, errors.Errors.Length);
+            Assert.AreEqual(2, errors.Errors.Count);
 
-            Assert.AreEqual("TestProperty2", errors.Errors[0].Key);
-            Assert.AreEqual("Error2", errors.Errors[0].Message);
-            Assert.AreEqual("TestProperty1", errors.Errors[1].Key);
-            Assert.AreEqual("Error1", errors.Errors[1].Message);
+            var error1 = errors.Errors.First();
+            Assert.AreEqual("TestProperty2", error1.Key);
+            Assert.AreEqual("Error2", error1.Message);
+            var error2 = errors.Errors.Last();
+            Assert.AreEqual("TestProperty1", error2.Key);
+            Assert.AreEqual("Error1", error2.Message);
         }
 
         [TestMethod]
