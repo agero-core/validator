@@ -47,13 +47,17 @@ var myClass =
 
 **Validator**, provides three methods to validate the object. 
 
-* **Validate:** Returns **null** if the object is valid, else returns, [ValidationErrors](./Agero.Core.Validator/ValidationErrors.cs).
-* **IsValid:** Returns boolean True, if the object is valid else returns False.
-* **CheckIsValid:** Throws an exception, [ValidationException](./Agero.Core.Validator/ValidationException.cs), if the object is invalid.
+* **Validate:** Returns **null**, if the object is valid, else returns [ValidationErrors](./Agero.Core.Validator/ValidationErrors.cs).
+* **IsValid:** Returns True, if the object is valid, else returns False.
+* **CheckIsValid:** Throws [ValidationException](./Agero.Core.Validator/ValidationException.cs), if the object is invalid.
 
 ```csharp
+//Instantiate ValidationHelper
 var validator = new ValidationHelper();
+
+//Validate using preferred method
 var validationErrors = validator.Validate(myClass);
+
 var isMyclassValid = validator.IsValid(myClass);
 
 validator.CheckIsValid(myClass);
