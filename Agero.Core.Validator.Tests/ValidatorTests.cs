@@ -172,7 +172,7 @@ namespace Agero.Core.Validator.Tests
 
         #endregion
 
-        #region Tests
+        #region Validate Tests
 
         [TestMethod]
         public void Validate_Should_Return_Null_When_Empty_Class()
@@ -467,7 +467,270 @@ namespace Agero.Core.Validator.Tests
             // Assert
             Assert.IsNull(errors);
         }
-
         #endregion
+
+        #region IsValid Tests
+        [TestMethod]
+        public void IsValid_Should_Return_True_When_Empty_Class()
+        {
+            // Arrange
+            var validator = new ValidationHelper();
+            var testClass = new TestEmptyClass();
+
+            // Act
+            var errors = validator.IsValid(testClass);
+
+            // Assert
+            Assert.IsTrue(errors);
+        }
+
+        [TestMethod]
+        public void IsValid_Should_Return_True_When_Class_Without_Attributes()
+        {
+            // Arrange
+            var validator = new ValidationHelper();
+            var testClass = new TestClassWithoutAttrs();
+
+            // Act
+            var errors = validator.IsValid(testClass);
+
+            // Assert
+            Assert.IsTrue(errors);
+        }
+
+
+        [TestMethod]
+        public void IsValid_Should_Return_False()
+        {
+            // Arrange
+            var validator = new ValidationHelper();
+            var testClass = new TestClassWithAttrs();
+
+            // Act
+            var errors = validator.IsValid(testClass);
+
+            // Assert
+            Assert.IsFalse(errors);
+        }
+
+        [TestMethod]
+        public void IsValid_Should_Return_True_When_Class_With_Another_Attributes()
+        {
+            // Arrange
+            var validator = new ValidationHelper();
+            var testClass = new TestClassWithAnotherAttr();
+
+            // Act
+            var errors = validator.IsValid(testClass);
+
+            // Assert
+            Assert.IsTrue(errors);
+        }
+
+        [TestMethod]
+        public void IsValid_Should_Return_True_When_Class_Is_Valid()
+        {
+            // Arrange
+            var validator = new ValidationHelper();
+            var testClass = new TestClassWithValidValues();
+
+            // Act
+            var errors = validator.IsValid(testClass);
+
+            // Assert
+            Assert.IsTrue(errors);
+        }
+
+        [TestMethod]
+        public void IsValid_Should_Return_True_When_Class_With_Invalid_Method()
+        {
+            // Arrange
+            var validator = new ValidationHelper();
+            var testClass = new TestClassWithInvalidMethod();
+
+            // Act
+            var errors = validator.IsValid(testClass);
+
+            // Assert
+            Assert.IsTrue(errors);
+        }
+
+        [TestMethod]
+        public void IsValid_Should_Return_False_With_Property_Name_As_Key()
+        {
+            // Arrange
+            var validator = new ValidationHelper();
+            var testClass = new TestClassWithAttrWithoutKey();
+
+            // Act
+            var errors = validator.IsValid(testClass);
+
+            // Assert
+            Assert.IsFalse(errors);
+        }
+
+        [TestMethod]
+        public void IsValid_Should_Return_False_When_Two_Similar_Errors_Are_Triggered()
+        {
+            // Arrange
+            var validator = new ValidationHelper();
+            var testClass = new TestClassWithSimilarValidationErrors();
+
+            // Act
+            var errors = validator.IsValid(testClass);
+
+            // Assert
+            Assert.IsFalse(errors);
+        }
+
+        [TestMethod]
+        public void IsValid_Should_Return_True_Object_When_T_Is_Base_Type()
+        {
+            // Arrange
+            var validator = new ValidationHelper();
+            var testClass = new TestDerivedClass();
+
+            // Act
+            var errors = validator.IsValid<TestBaseClass>(testClass);
+
+            // Assert
+            Assert.IsTrue(errors);
+        }
+
+        [TestMethod]
+        public void IsValid_Should_Return_False_When_Referenced_Object_Has_Errors()
+        {
+            // Arrange
+            var testClass =
+                new TestClassWithReferenceToAnotherClass
+                {
+                    TestProperty = new TestClass { TestProperty1 = null, TestProperty2 = "ABC" }
+                };
+
+            var validator = new ValidationHelper();
+
+            // Act
+            var errors = validator.IsValid(testClass);
+
+            // Assert
+            Assert.IsFalse(errors);
+        }
+
+        [TestMethod]
+        public void IsValid_Should_Return_True_When_Referenced_Object_Property_Is_Null()
+        {
+            // Arrange
+            var testClass =
+                new TestClassWithReferenceToAnotherClass
+                {
+                    TestProperty = null
+                };
+
+            var validator = new ValidationHelper();
+
+            // Act
+            var errors = validator.IsValid(testClass);
+
+            // Assert
+            Assert.IsTrue(errors);
+        }
+
+        [TestMethod]
+        public void IsValid_Should_Return_False_When_Referenced_Collection_Of_Objects_Have_Errors()
+        {
+            // Arrange
+            var testClass =
+                new TestClassWithCollectionOfReferencesToAnotherClass
+                {
+                    TestProperty =
+                        new[]
+                        {
+                            new TestClass { TestProperty1 = "ABC", TestProperty2 = null },
+                            new TestClass { TestProperty1 = "ABC", TestProperty2 = "ABC"},
+                            new TestClass { TestProperty1 = null, TestProperty2 = "ABC"}
+                        }
+                };
+
+            var validator = new ValidationHelper();
+
+            // Act
+            var errors = validator.IsValid(testClass);
+
+            // Assert
+            Assert.IsFalse(errors);
+        }
+
+        [TestMethod]
+        public void IsValid_Should_Return_True_When_Referenced_Collection_Of_Objects_Is_Null()
+        {
+            // Arrange
+            var testClass =
+                new TestClassWithCollectionOfReferencesToAnotherClass
+                {
+                    TestProperty = null
+                };
+
+            var validator = new ValidationHelper();
+
+            // Act
+            var errors = validator.IsValid(testClass);
+
+            // Assert
+            Assert.IsTrue(errors);
+        }
+
+        [TestMethod]
+        public void IsValid_Should_Return_True_When_String_Object_Is_Validated()
+        {
+            // Arrange
+            var validator = new ValidationHelper();
+
+            // Act
+            var errors = validator.IsValid("str");
+
+            // Assert
+            Assert.IsTrue(errors);
+        }
+
+        [TestMethod]
+        public void IsValid_Should_Return_True_When_Array_Of_Int_Object_Is_Validated()
+        {
+            // Arrange
+            var validator = new ValidationHelper();
+
+            // Act
+            var errors = validator.IsValid(new[] { 1, 2 });
+
+            // Assert
+            Assert.IsTrue(errors);
+        }
+
+        [TestMethod]
+        public void IsValid_Should_Return_True_When_Array_Of_String_Object_Is_Validated()
+        {
+            // Arrange
+            var validator = new ValidationHelper();
+
+            // Act
+            var errors = validator.IsValid(new[] { "a", "b" });
+
+            // Assert
+            Assert.IsTrue(errors);
+        }
+
+        [TestMethod]
+        public void IsValid_Should_Return_True_When_dotNet_Object_Is_Validated()
+        {
+            // Arrange
+            var validator = new ValidationHelper();
+
+            // Act
+            var errors = validator.IsValid(new DirectoryInfo(@"c:\"));
+
+            // Assert
+            Assert.IsTrue(errors);
+        }
+
+        #endregion       
     }
 }
