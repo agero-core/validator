@@ -27,7 +27,7 @@ namespace Agero.Core.Validator.Attributes
         /// <summary>Specifies optional minimum value as string, because decimal type do not have compile time literals.</summary>
         public string MinValueString { get; set; }
         
-        //// <summary>Specifies optional maximum value as string, because decimal type do not have compile time literals.</summary>
+        /// <summary>Specifies optional maximum value as string, because decimal type do not have compile time literals.</summary>
         public string MaxValueString { get; set; }
 
         /// <summary>Checks whether property value is valid.</summary>
