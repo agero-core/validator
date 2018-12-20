@@ -730,7 +730,84 @@ namespace Agero.Core.Validator.Tests
             // Assert
             Assert.IsTrue(errors);
         }
+        #endregion
 
-        #endregion       
+        #region CheckIsValid Tests
+        [TestMethod]
+        [ExpectedException(typeof(ValidationException<Agero.Core.Validator.Tests.ValidatorTests.TestClassWithAttrs>))]
+        public void CheckIsValid_Should_Throw_ValidationException()
+        {
+            // Arrange
+            var validator = new ValidationHelper();
+            var testClass = new TestClassWithAttrs();
+
+            // Act
+            validator.CheckIsValid(testClass);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ValidationException<Agero.Core.Validator.Tests.ValidatorTests.TestClassWithAttrWithoutKey>))]
+        public void CheckIsValid__Should_Throw_ValidationException_With_Property_Name_As_Key()
+        {
+            // Arrange
+            var validator = new ValidationHelper();
+            var testClass = new TestClassWithAttrWithoutKey();
+
+            // Act
+            validator.CheckIsValid(testClass);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ValidationException<Agero.Core.Validator.Tests.ValidatorTests.TestClassWithSimilarValidationErrors>))]
+        public void CheckIsValid_Should_Throw_ValidationException_When_Two_Similar_Errors_Are_Triggered()
+        {
+            // Arrange
+            var validator = new ValidationHelper();
+            var testClass = new TestClassWithSimilarValidationErrors();
+
+            // Act
+            validator.CheckIsValid(testClass);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ValidationException<Agero.Core.Validator.Tests.ValidatorTests.TestClassWithReferenceToAnotherClass>))]
+        public void CheckIsValid_Should_Throw_ValidationException_When_Referenced_Object_Has_Errors()
+        {
+            // Arrange
+            var testClass =
+                new TestClassWithReferenceToAnotherClass
+                {
+                    TestProperty = new TestClass { TestProperty1 = null, TestProperty2 = "ABC" }
+                };
+
+            var validator = new ValidationHelper();
+
+            // Act
+            validator.CheckIsValid(testClass);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ValidationException<Agero.Core.Validator.Tests.ValidatorTests.TestClassWithCollectionOfReferencesToAnotherClass>))]
+        public void CheckIsValid_Should_Throw_ValidationException_When_Referenced_Collection_Of_Objects_Have_Errors()
+        {
+            // Arrange
+            var testClass =
+                new TestClassWithCollectionOfReferencesToAnotherClass
+                {
+                    TestProperty =
+                        new[]
+                        {
+                            new TestClass { TestProperty1 = "ABC", TestProperty2 = null },
+                            new TestClass { TestProperty1 = "ABC", TestProperty2 = "ABC"},
+                            new TestClass { TestProperty1 = null, TestProperty2 = "ABC"}
+                        }
+                };
+
+            var validator = new ValidationHelper();
+
+            // Act
+            validator.CheckIsValid(testClass);
+        }
+        #endregion
     }
 }
