@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Agero.Core.Checker;
+﻿using Agero.Core.Checker;
+using System.Collections.Generic;
 
 namespace Agero.Core.Validator
 {
