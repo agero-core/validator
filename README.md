@@ -29,7 +29,7 @@ public class MyClass
             return new ValidationError(nameof(Text), "Text must be specified.");
 
         if(Id > 1000 && Id < 2000)
-            return new ValidationError(nameof(Text), "Id cannot have a value between 1000 and 2000.");
+            return new ValidationError(nameof(Id), "Id cannot have a value between 1000 and 2000.");
 
         return null;
     }
