@@ -21,6 +21,18 @@ public class MyClass
     [ComplexTypeValidate] // This attribute tells ValidationHelper to validate MyValueClass object
     [NotNullValidate("MyValue must be specified.")]
     public MyValueClass MyValue { get; set; }
+
+    [ValidateMethod] // This attribute tells ValidationHelper to execute this method as part of model validation
+    internal ValidationError ValidateValue()
+    {
+        if (string.IsNullOrWhiteSpace(Text))
+            return new ValidationError(nameof(Text), "Text must be specified.");
+
+        if(Id > 1000 && Id < 2000)
+            return new ValidationError(nameof(Text), "Id cannot have a value between 1000 and 2000.");
+
+        return null;
+    }
 }
 
 public class MyValueClass
