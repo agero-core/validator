@@ -7,7 +7,7 @@ Model validation library for .NET applications.
 
 ## Usage:
 
-Define model classes with properties having validation attributes (e.g.,**IntValidate**) having constrainsts (e.g.,**MinValue**) according to your use case. An small example is shown below. For additional usage information refer [QuickStartTests](./Agero.Core.Validator.Tests/QuickStartTests.cs).
+Define model classes with properties and methods having validation attributes (e.g.,**IntValidate**) with optional constrainsts (e.g.,**MinValue**) according to your use case. An small example is shown below. For additional usage information refer [QuickStartTests](./Agero.Core.Validator.Tests/QuickStartTests.cs).
 
 ```csharp
 public class MyClass
@@ -70,7 +70,7 @@ var validator = new ValidationHelper();
 //Validate using preferred method
 var validationErrors = validator.Validate(myClass);
 
-var isMyclassValid = validator.IsValid(myClass);
+var isMyClassValid = validator.IsValid(myClass);
 
 validator.CheckIsValid(myClass);
 ```
