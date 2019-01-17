@@ -61,7 +61,7 @@ Then use [IValidationHelper](./Agero.Core.Validator/IValidationHelper.cs), which
 
 * **Validate:** Returns **null**, if the object is valid, otherwise returns [IValidationErrors{T}](./Agero.Core.Validator/IValidationErrorsOfT.cs) or [IValidationErrors](./Agero.Core.Validator/IValidationErrors.cs).
 * **IsValid:** Returns **true**, if the object is valid, otherwise returns **false**.
-* **CheckIsValid:** Throws [IValidationException{T}](./Agero.Core.Validator/IValidationException<T>.cs) or [IValidationException](./Agero.Core.Validator/IValidationException.cs), if the object is invalid.
+* **CheckIsValid:** Throws [ValidationException{T}](./Agero.Core.Validator/ValidationExceptionOfT.cs) or [ValidationException](./Agero.Core.Validator/ValidationException.cs), if the object is invalid.
 
 ```csharp
 // Instantiate ValidationHelper
