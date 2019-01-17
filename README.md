@@ -57,7 +57,7 @@ var myClass =
     };
 ```
 
-Then use [ValidationHelper](./Agero.Core.Validator/ValidationHelper.cs), which provides three type of methods to validate the object. 
+Then use [IValidationHelper](./Agero.Core.Validator/IValidationHelper.cs), which provides three type of methods to validate the object. 
 
 * **Validate:** Returns **null**, if the object is valid, otherwise returns [IValidationErrors{T}](./Agero.Core.Validator/IValidationErrorsOfT.cs) or [IValidationErrors](./Agero.Core.Validator/IValidationErrors.cs).
 * **IsValid:** Returns **true**, if the object is valid, otherwise returns **false**.
