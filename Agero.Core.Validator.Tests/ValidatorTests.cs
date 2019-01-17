@@ -734,7 +734,7 @@ namespace Agero.Core.Validator.Tests
 
         #region CheckIsValid Tests
         [TestMethod]
-        [ExpectedException(typeof(ValidationException<Agero.Core.Validator.Tests.ValidatorTests.TestClassWithAttrs>))]
+        [ExpectedException(typeof(ValidationException<TestClassWithAttrs>))]
         public void CheckIsValid_Should_Throw_ValidationException()
         {
             // Arrange
@@ -746,7 +746,7 @@ namespace Agero.Core.Validator.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ValidationException<Agero.Core.Validator.Tests.ValidatorTests.TestClassWithAttrWithoutKey>))]
+        [ExpectedException(typeof(ValidationException<TestClassWithAttrWithoutKey>))]
         public void CheckIsValid__Should_Throw_ValidationException_With_Property_Name_As_Key()
         {
             // Arrange
@@ -758,7 +758,7 @@ namespace Agero.Core.Validator.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ValidationException<Agero.Core.Validator.Tests.ValidatorTests.TestClassWithSimilarValidationErrors>))]
+        [ExpectedException(typeof(ValidationException<TestClassWithSimilarValidationErrors>))]
         public void CheckIsValid_Should_Throw_ValidationException_When_Two_Similar_Errors_Are_Triggered()
         {
             // Arrange
@@ -770,7 +770,7 @@ namespace Agero.Core.Validator.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ValidationException<Agero.Core.Validator.Tests.ValidatorTests.TestClassWithReferenceToAnotherClass>))]
+        [ExpectedException(typeof(ValidationException<TestClassWithReferenceToAnotherClass>))]
         public void CheckIsValid_Should_Throw_ValidationException_When_Referenced_Object_Has_Errors()
         {
             // Arrange
@@ -787,7 +787,7 @@ namespace Agero.Core.Validator.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ValidationException<Agero.Core.Validator.Tests.ValidatorTests.TestClassWithCollectionOfReferencesToAnotherClass>))]
+        [ExpectedException(typeof(ValidationException<TestClassWithCollectionOfReferencesToAnotherClass>))]
         public void CheckIsValid_Should_Throw_ValidationException_When_Referenced_Collection_Of_Objects_Have_Errors()
         {
             // Arrange
