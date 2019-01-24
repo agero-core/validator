@@ -23,6 +23,7 @@ namespace Agero.Core.Validator.Attributes
             EnumType = enumType;
 
             CanBeNull = false;
+            CanBeEmpty = false;
             IgnoreCase = false;
         }
 
@@ -31,6 +32,9 @@ namespace Agero.Core.Validator.Attributes
 
         /// <summary>Spesifies whether value can be null. Default is false.</summary>
         public bool CanBeNull { get; set; }
+
+        /// <summary>Spesifies whether value can be Empty. Default is false.</summary>
+        public bool CanBeEmpty { get; set; }
 
         /// <summary>Spesifies whether value needs to be validated against enumeration values using case-insesitive matching. Default is false.</summary>
         public bool IgnoreCase { get; set; }
@@ -44,8 +48,8 @@ namespace Agero.Core.Validator.Attributes
                 return CanBeNull;
 
             var str = (string)value;
-            if (string.IsNullOrWhiteSpace(str))
-                return false;
+            if (str == string.Empty)
+                return CanBeEmpty;
 
             return EnumType.GetEnumNames().Contains(str, IgnoreCase ? StringComparer.InvariantCultureIgnoreCase : StringComparer.InvariantCulture);
         }
